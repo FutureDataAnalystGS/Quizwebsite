@@ -63,7 +63,7 @@ export default function App() {
     setShowSavedQuestions(false);
 
     try {
-      const response = await fetch('https://raw.githubusercontent.com/FutureDataAnalystGS/Baza/main/Baza.json');
+      const response = await fetch('https://raw.githubusercontent.com/FutureDataAnalystGS/Quizwebsite/refs/heads/main/Baza.json');
       
       if (!response.ok) {
         throw new Error('Nie udało się załadować pytań');
