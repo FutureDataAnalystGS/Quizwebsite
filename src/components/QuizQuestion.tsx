@@ -20,12 +20,25 @@ export function QuizQuestion({
   submitted,
   isSaved
 }: QuizQuestionProps) {
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('pl-PL', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      });
+    } catch (e) {
+      return dateString;
+    }
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-md p-6">
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="flex-1">
           <div className="text-sm text-indigo-600 font-semibold mb-2">
-            Data egzaminu: {question.examDate}
+            Data egzaminu: {formatDate(question.examDate)}
           </div>
 
           <div className="text-lg font-semibold text-gray-800">
@@ -36,8 +49,8 @@ export function QuizQuestion({
         <button
           onClick={onSaveQuestion}
           className={`flex-shrink-0 p-2 rounded-lg transition-colors ${isSaved
-              ? 'text-green-600 bg-green-50 hover:bg-green-100'
-              : 'text-indigo-600 hover:bg-indigo-50'
+            ? 'text-green-600 bg-green-50 hover:bg-green-100'
+            : 'text-indigo-600 hover:bg-indigo-50'
             }`}
           title={isSaved ? "Usuń z zapisanych" : "Zapisz pytanie do nauki"}
         >
