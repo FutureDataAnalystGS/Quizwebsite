@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { QuizQuestion } from './QuizQuestion';
 import { RotateCcw } from 'lucide-react';
-import type { Question } from '../App';
+import type { Question, SavedQuestion } from '../App';
 
 interface QuizProps {
   questions: Question[];
@@ -19,33 +19,49 @@ export function Quiz({ questions, onRestart, username }: QuizProps) {
 
     const newSelectedAnswers = new Map(selectedAnswers);
     const currentAnswers = newSelectedAnswers.get(questionIndex) || new Set<number>();
-    
+
     if (currentAnswers.has(answerIndex)) {
       currentAnswers.delete(answerIndex);
     } else {
       currentAnswers.add(answerIndex);
     }
-    
+
     newSelectedAnswers.set(questionIndex, currentAnswers);
     setSelectedAnswers(newSelectedAnswers);
   };
 
+  const [savedQuestions, setSavedQuestions] = useState<SavedQuestion[]>(() => {
+    return JSON.parse(localStorage.getItem(`savedQuestions_${username}`) || '[]');
+  });
+
   const handleSaveQuestion = (questionIndex: number) => {
     const question = questions[questionIndex];
-    const savedQuestions = JSON.parse(localStorage.getItem(`savedQuestions_${username}`) || '[]');
-    
+
     // Check if question already exists
-    const exists = savedQuestions.some((q: Question) => 
+    const exists = savedQuestions.some((q) =>
       q.text === question.text && q.examDate === question.examDate
     );
-    
-    if (!exists) {
-      savedQuestions.push({
-        ...question,
-        savedAt: new Date().toISOString()
-      });
-      localStorage.setItem(`savedQuestions_${username}`, JSON.stringify(savedQuestions));
+
+    let newSavedQuestions: SavedQuestion[];
+
+    if (exists) {
+      // Remove if already saved
+      newSavedQuestions = savedQuestions.filter((q) =>
+        !(q.text === question.text && q.examDate === question.examDate)
+      );
+    } else {
+      // Add if not saved
+      newSavedQuestions = [
+        ...savedQuestions,
+        {
+          ...question,
+          savedAt: new Date().toISOString()
+        }
+      ];
     }
+
+    setSavedQuestions(newSavedQuestions);
+    localStorage.setItem(`savedQuestions_${username}`, JSON.stringify(newSavedQuestions));
   };
 
   const handleSubmit = () => {
@@ -72,7 +88,7 @@ export function Quiz({ questions, onRestart, username }: QuizProps) {
 
     setScore(correctCount);
     setSubmitted(true);
-    
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -108,6 +124,7 @@ export function Quiz({ questions, onRestart, username }: QuizProps) {
             onAnswerToggle={(answerIndex) => handleAnswerToggle(questionIndex, answerIndex)}
             onSaveQuestion={() => handleSaveQuestion(questionIndex)}
             submitted={submitted}
+            isSaved={savedQuestions.some(q => q.text === question.text && q.examDate === question.examDate)}
           />
         ))}
       </div>

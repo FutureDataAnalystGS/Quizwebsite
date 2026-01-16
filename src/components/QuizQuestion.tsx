@@ -8,6 +8,7 @@ interface QuizQuestionProps {
   onAnswerToggle: (answerIndex: number) => void;
   onSaveQuestion: () => void;
   submitted: boolean;
+  isSaved: boolean;
 }
 
 export function QuizQuestion({
@@ -16,7 +17,8 @@ export function QuizQuestion({
   selectedAnswers,
   onAnswerToggle,
   onSaveQuestion,
-  submitted
+  submitted,
+  isSaved
 }: QuizQuestionProps) {
   return (
     <div className="bg-white rounded-xl shadow-md p-6">
@@ -25,18 +27,21 @@ export function QuizQuestion({
           <div className="text-sm text-indigo-600 font-semibold mb-2">
             Data egzaminu: {question.examDate}
           </div>
-          
+
           <div className="text-lg font-semibold text-gray-800">
             {questionNumber}. {question.text}
           </div>
         </div>
-        
+
         <button
           onClick={onSaveQuestion}
-          className="flex-shrink-0 p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-          title="Zapisz pytanie do nauki"
+          className={`flex-shrink-0 p-2 rounded-lg transition-colors ${isSaved
+              ? 'text-green-600 bg-green-50 hover:bg-green-100'
+              : 'text-indigo-600 hover:bg-indigo-50'
+            }`}
+          title={isSaved ? "Usuń z zapisanych" : "Zapisz pytanie do nauki"}
         >
-          <Bookmark className="w-6 h-6" />
+          <Bookmark className={`w-6 h-6 ${isSaved ? 'fill-current' : ''}`} />
         </button>
       </div>
 
@@ -44,9 +49,9 @@ export function QuizQuestion({
         {question.answers.map((answer, answerIndex) => {
           const isSelected = selectedAnswers.has(answerIndex);
           const isCorrect = question.correctAnswers[answerIndex];
-          
+
           let labelClass = 'block p-4 border-2 rounded-lg cursor-pointer transition-all ';
-          
+
           if (submitted) {
             if (isCorrect) {
               labelClass += 'bg-green-50 border-green-500 ';

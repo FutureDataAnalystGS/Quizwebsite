@@ -1322,3 +1322,28 @@ html {
   syntax: "*";
   inherits: false
 }
+
+@layer utilities {
+  .bg-background { background-color: var(--color-white); }
+  .bg-primary { background-color: var(--color-indigo-600); }
+  .bg-muted { background-color: var(--color-gray-200); }
+  .border-primary { border-color: var(--color-indigo-600); }
+  .ring-ring { outline-color: var(--color-indigo-300); }
+}
+
+/* Manual Utility Fixes */
+.h-4 { height: 1rem; }
+.w-full { width: 100%; }
+.size-4 { width: 1rem; height: 1rem; }
+.grow { flex-grow: 1; }
+.rounded-full { border-radius: 9999px; }
+.shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.ring-offset-background { --tw-ring-offset-color: #fff; }
+.opacity-50 { opacity: 0.5; }
+
+/* Re-asserting colors just in case */
+.bg-background { background-color: var(--color-white); }
+.bg-primary { background-color: var(--color-indigo-600); }
+.bg-muted { background-color: var(--color-gray-200); }
+.border-primary { border-color: var(--color-indigo-600); }
+
