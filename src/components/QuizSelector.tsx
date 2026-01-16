@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Slider } from './ui/slider';
 
 interface QuizSelectorProps {
   onLoadQuiz: (count: number) => void;
@@ -18,19 +19,18 @@ export function QuizSelector({ onLoadQuiz, isLoading, error }: QuizSelectorProps
       <div className="space-y-6">
         <div>
           <label htmlFor="question-count" className="block text-lg font-semibold text-gray-700 mb-3">
-            Wybierz liczbę pytań:
+            Wybierz liczbę pytań: <span className="text-indigo-600 font-bold">{selectedCount}</span>
           </label>
-          <select
-            id="question-count"
-            value={selectedCount}
-            onChange={(e) => setSelectedCount(parseInt(e.target.value))}
-            className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:outline-none text-lg"
+          <Slider
+            defaultValue={[selectedCount]}
+            max={90}
+            min={10}
+            step={1}
+            value={[selectedCount]}
+            onValueChange={(value) => setSelectedCount(value[0])}
             disabled={isLoading}
-          >
-            <option value={20}>20</option>
-            <option value={40}>40</option>
-            <option value={60}>60</option>
-          </select>
+            className="py-4"
+          />
         </div>
 
         <button
