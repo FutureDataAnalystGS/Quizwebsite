@@ -18,7 +18,7 @@ export function AuthPage({ onLogin }: AuthPageProps) {
       credential,
       loginType: 'google'
     };
-    
+
     localStorage.setItem(`user_${email}`, JSON.stringify(userData));
     onLogin(name, email, picture);
   };
@@ -32,7 +32,7 @@ export function AuthPage({ onLogin }: AuthPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="flex-1 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           <div className="text-center mb-8">
@@ -45,7 +45,7 @@ export function AuthPage({ onLogin }: AuthPageProps) {
           </div>
 
           <div className="space-y-4">
-            <GoogleSignIn 
+            <GoogleSignIn
               onSuccess={handleGoogleSuccess}
               onError={handleGoogleError}
             />

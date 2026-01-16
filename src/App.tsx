@@ -5,6 +5,7 @@ import { Quiz } from './components/Quiz';
 import { SavedQuestions } from './components/SavedQuestions';
 import { LogOut, BookMarked } from 'lucide-react';
 import { CookieBanner } from './components/CookieBanner';
+import { Footer } from './components/Footer';
 import { auth } from './firebase';
 import { signOut } from 'firebase/auth';
 
@@ -125,7 +126,13 @@ export default function App() {
   };
 
   if (!currentUser) {
-    return <AuthPage onLogin={handleLogin} />;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col pb-32">
+        <AuthPage onLogin={handleLogin} />
+        <Footer />
+        <CookieBanner />
+      </div>
+    );
   }
 
   return (
@@ -188,7 +195,6 @@ export default function App() {
           />
         )}
       </div>
-      <CookieBanner />
     </div>
   );
 }

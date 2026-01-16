@@ -1354,3 +1354,28 @@ html {
   margin-block-start: calc(calc(var(--spacing) * 12) * var(--tw-space-y-reverse));
   margin-block-end: calc(calc(var(--spacing) * 12) * calc(1 - var(--tw-space-y-reverse)));
 }
+
+/* Layout Utilities */
+.flex-col { flex-direction: column !important; }
+.flex-1 { flex: 1 1 0% !important; }
+.min-h-screen { min-height: 100vh !important; }
+.mt-auto { margin-top: auto !important; }
+.pb-32 { padding-bottom: 8rem !important; }
+
+
+/* Footer and Gap Utilities */
+.flex-row { flex-direction: row !important; }
+.justify-between { justify-content: space-between !important; }
+.gap-10 { gap: 2.5rem !important; }
+.items-center { align-items: center !important; }
+
+
+/* Ensure max-w-md is available if not already */
+.max-w-md { max-width: 28rem !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+
+
+/* Group Utilities */
+.justify-center { justify-content: center !important; }
+.gap-12 { gap: 3rem !important; }
+
