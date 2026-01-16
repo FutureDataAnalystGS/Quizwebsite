@@ -1,98 +1,41 @@
-import { useEffect, useRef } from 'react';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../firebase';
+import { LogIn } from 'lucide-react';
 
 interface GoogleSignInProps {
   onSuccess: (credential: string, name: string, email: string, picture: string) => void;
   onError: (error: string) => void;
 }
 
-declare global {
-  interface Window {
-    google?: {
-      accounts: {
-        id: {
-          initialize: (config: any) => void;
-          renderButton: (element: HTMLElement, config: any) => void;
-          prompt: () => void;
-        };
-      };
-    };
-  }
-}
-
 export function GoogleSignIn({ onSuccess, onError }: GoogleSignInProps) {
-  const googleButtonRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Load Google Sign-In script
-    const script = document.createElement('script');
-    script.src = 'https://accounts.google.com/gsi/client';
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      if (window.google) {
-        // Note: Replace with your actual Google Client ID
-        // Get it from: https://console.cloud.google.com/apis/credentials
-        const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
-
-        window.google.accounts.id.initialize({
-          client_id: CLIENT_ID,
-          callback: handleCredentialResponse,
-        });
-
-        if (googleButtonRef.current) {
-          window.google.accounts.id.renderButton(
-            googleButtonRef.current,
-            {
-              theme: 'outline',
-              size: 'large',
-              width: '100%',
-              text: 'continue_with',
-              locale: 'pl',
-            }
-          );
-        }
-      }
-    };
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const handleCredentialResponse = (response: any) => {
+  const handleLogin = async () => {
     try {
-      // Decode JWT token to get user info
-      const payload = JSON.parse(atob(response.credential.split('.')[1]));
-      
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
       onSuccess(
-        response.credential,
-        payload.name || payload.email,
-        payload.email,
-        payload.picture || ''
+        await user.getIdToken(),
+        user.displayName || user.email || 'Użytkownik',
+        user.email || '',
+        user.photoURL || ''
       );
-    } catch (error) {
-      onError('Błąd podczas logowania przez Google');
-      console.error('Google Sign-In error:', error);
+    } catch (error: any) {
+      console.error('Błąd logowania:', error);
+      onError(error.message || 'Wystąpił błąd podczas logowania przez Google');
     }
   };
 
   return (
-    <div>
-      <div ref={googleButtonRef} className="w-full"></div>
-      <div className="mt-4 p-4 bg-yellow-50 border-2 border-yellow-200 rounded-lg">
-        <p className="text-sm text-yellow-800">
-          <strong>Uwaga dla dewelopera:</strong> Aby włączyć logowanie przez Google, musisz:
-        </p>
-        <ol className="text-sm text-yellow-800 mt-2 list-decimal list-inside space-y-1">
-          <li>Przejdź do <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener noreferrer" className="underline">Google Cloud Console</a></li>
-          <li>Utwórz nowy projekt lub wybierz istniejący</li>
-          <li>Utwórz "OAuth 2.0 Client ID"</li>
-          <li>Skopiuj Client ID i zastąp "YOUR_GOOGLE_CLIENT_ID" w pliku /components/GoogleSignIn.tsx</li>
-          <li>Dodaj domenę swojej aplikacji do "Authorized JavaScript origins"</li>
-        </ol>
-      </div>
-    </div>
+    <button
+      onClick={handleLogin}
+      className="w-full bg-white text-gray-700 border border-gray-300 py-3 px-6 rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 shadow-sm"
+    >
+      <img
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        alt="Google"
+        className="w-5 h-5"
+      />
+      Zaloguj się przez Google
+    </button>
   );
 }

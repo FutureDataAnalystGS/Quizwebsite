@@ -4,6 +4,8 @@ import { QuizSelector } from './components/QuizSelector';
 import { Quiz } from './components/Quiz';
 import { SavedQuestions } from './components/SavedQuestions';
 import { LogOut, BookMarked } from 'lucide-react';
+import { auth } from './firebase';
+import { signOut } from 'firebase/auth';
 
 export interface Question {
   examDate: string;
@@ -46,7 +48,12 @@ export default function App() {
     if (picture) localStorage.setItem('currentUserPicture', picture);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
     setCurrentUser(null);
     setUserEmail(null);
     setUserPicture(null);
@@ -64,16 +71,16 @@ export default function App() {
 
     try {
       const response = await fetch('https://raw.githubusercontent.com/FutureDataAnalystGS/Quizwebsite/refs/heads/main/Baza.json');
-      
+
       if (!response.ok) {
         throw new Error('Nie udało się załadować pytań');
       }
 
       const data: Question[] = await response.json();
-      
+
       const shuffled = [...data].sort(() => 0.5 - Math.random());
       const selected = shuffled.slice(0, questionCount);
-      
+
       setQuestions(selected);
       setQuizStarted(true);
     } catch (err) {
@@ -121,9 +128,9 @@ export default function App() {
               </button>
               <div className="flex items-center gap-3 bg-indigo-700 px-4 py-2 rounded-lg">
                 {userPicture && (
-                  <img 
-                    src={userPicture} 
-                    alt={currentUser || 'User'} 
+                  <img
+                    src={userPicture}
+                    alt={currentUser || 'User'}
                     className="w-8 h-8 rounded-full"
                   />
                 )}
@@ -145,19 +152,19 @@ export default function App() {
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {showSavedQuestions ? (
-          <SavedQuestions 
-            username={userEmail || currentUser || 'guest'} 
+          <SavedQuestions
+            username={userEmail || currentUser || 'guest'}
             onBack={handleBackToQuiz}
           />
         ) : !quizStarted ? (
-          <QuizSelector 
-            onLoadQuiz={handleLoadQuiz} 
+          <QuizSelector
+            onLoadQuiz={handleLoadQuiz}
             isLoading={isLoading}
             error={error}
           />
         ) : (
-          <Quiz 
-            questions={questions} 
+          <Quiz
+            questions={questions}
             onRestart={handleRestart}
             username={userEmail || currentUser || 'guest'}
           />
