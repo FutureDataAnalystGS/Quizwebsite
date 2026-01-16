@@ -4,6 +4,7 @@ import { QuizSelector } from './components/QuizSelector';
 import { Quiz } from './components/Quiz';
 import { SavedQuestions } from './components/SavedQuestions';
 import { LogOut, BookMarked } from 'lucide-react';
+import { CookieBanner } from './components/CookieBanner';
 import { auth } from './firebase';
 import { signOut } from 'firebase/auth';
 
@@ -187,6 +188,7 @@ export default function App() {
           />
         )}
       </div>
+      <CookieBanner />
     </div>
   );
 }
