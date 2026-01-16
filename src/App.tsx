@@ -64,7 +64,7 @@ export default function App() {
     setShowSavedQuestions(false);
   };
 
-  const handleLoadQuiz = async (questionCount: number) => {
+  const handleLoadQuiz = async (questionCount: number, years: number[]) => {
     setIsLoading(true);
     setError(null);
     setShowSavedQuestions(false);
@@ -76,10 +76,27 @@ export default function App() {
         throw new Error('Nie udało się załadować pytań');
       }
 
-      const data: Question[] = await response.json();
+      let data: Question[] = await response.json();
+
+      // Filter by years if any year is selected
+      if (years.length > 0) {
+        data = data.filter(q => {
+          const examYear = new Date(q.examDate).getFullYear();
+          return years.includes(examYear);
+        });
+      }
+
+      if (data.length === 0) {
+        setError('Brak pytań spełniających kryteria.');
+        setQuestions([]);
+        return; // Don't start quiz if no questions
+      }
+
+      // If requested count is more than available questions after filtering, use all available
+      const countToSelect = Math.min(questionCount, data.length);
 
       const shuffled = [...data].sort(() => 0.5 - Math.random());
-      const selected = shuffled.slice(0, questionCount);
+      const selected = shuffled.slice(0, countToSelect);
 
       setQuestions(selected);
       setQuizStarted(true);
