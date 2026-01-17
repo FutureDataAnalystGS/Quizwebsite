@@ -34,16 +34,36 @@ export function QuizSelector({ onLoadQuiz, isLoading, error }: QuizSelectorProps
           <label htmlFor="question-count" className="block text-lg font-semibold text-gray-700 mb-3">
             Wybierz liczbę pytań: <span className="text-indigo-600 font-bold">{selectedCount}</span>
           </label>
-          <Slider
-            defaultValue={[selectedCount]}
-            max={90}
-            min={10}
-            step={1}
-            value={[selectedCount]}
-            onValueChange={(value) => setSelectedCount(value[0])}
-            disabled={isLoading}
-            className="py-4"
-          />
+          <div className="bg-gray-100 rounded-2xl p-6 md:p-8">
+            <Slider
+              defaultValue={[selectedCount]}
+              max={90}
+              min={10}
+              step={1}
+              value={[selectedCount]}
+              onValueChange={(value) => setSelectedCount(value[0])}
+              disabled={isLoading}
+              className="mb-8"
+            />
+            <div className="flex justify-between items-center px-1">
+              {[10, 20, 30, 40, 50, 60, 70, 80, 90].map((num) => (
+                <button
+                  key={num}
+                  onClick={() => setSelectedCount(num)}
+                  disabled={isLoading}
+                  className={`flex flex-col items-center group transition-all ${selectedCount === num ? 'scale-110' : 'hover:scale-105'
+                    }`}
+                >
+                  <div className={`w-1 h-3 rounded-full mb-2 transition-colors ${selectedCount === num ? 'bg-indigo-600' : 'bg-gray-300 group-hover:bg-gray-400'
+                    }`} />
+                  <span className={`text-xs md:text-sm font-bold transition-colors ${selectedCount === num ? 'text-indigo-600' : 'text-gray-400 group-hover:text-gray-600'
+                    }`}>
+                    {num}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div>
