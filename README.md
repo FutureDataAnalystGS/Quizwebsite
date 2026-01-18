@@ -4,7 +4,7 @@ The quiz is based on **official exam questions** and allows users to learn and t
 
 ## 📊 Question Database
 * **6,030 exam questions**
-* Exam sessions from **October 2016 to December 2025**
+* Exam sessions from **March 2016 to December 2025**
 * Questions sourced from official materials published on the Polish government website:
   [https://www.gov.pl/web/rozwoj-technologia/jak-zostac-rzeczoznawca-majatkowym](https://www.gov.pl/web/rozwoj-technologia/jak-zostac-rzeczoznawca-majatkowym)
 
