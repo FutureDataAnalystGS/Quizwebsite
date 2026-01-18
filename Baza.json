@@ -87045,8 +87045,8 @@
         "text": "Współczynnik zmiany wartości nieruchomości wykorzystywany przy parametrycznym sposobie określania wartości nieruchomości według stanu przed podziałem dla ustalenia opłaty adiacenckiej z tytułu podziału nieruchomości:",
         "answers": [
             "zależy od przeznaczenia przeważającego gruntu;",
-            "przyjmuje wartości w granicach 0,02­0,06;",
-            "przyjmuje wielkość w granicach 0,09­0,12."
+            "przyjmuje wartości w granicach 0,02 - ­0,06;",
+            "przyjmuje wielkość w granicach 0,09 - ­0,12."
         ],
         "correctAnswers": [
             1,
@@ -88319,8 +88319,8 @@
         "number": "Pyt 66",
         "text": "Grubizna drzewostanu obejmuje:",
         "answers": [
-            "miąższość części drzew o grubości w cieńszym końcu mierzonej bez kory równej conajmniej 5cm;",
-            "miąższość części drzew o grubości w cieńszym końcu mierzonej z korą równej conajmniej 7cm;",
+            "miąższość części drzew o grubości w cieńszym końcu mierzonej bez kory równej co najmniej 5 cm;",
+            "miąższość części drzew o grubości w cieńszym końcu mierzonej z korą równej co najmniej 7 cm;",
             "sumę miąższości surowca drewna wielkowymiarowego i średniowymiarowego."
         ],
         "correctAnswers": [
@@ -88422,8 +88422,8 @@
         "text": "Do obliczenia odszkodowania za przedwczesny wyrąb drzewostanów, w których brak jest sortymentów użytkowych należy zastosować algorytm:",
         "answers": [
             "O = Wki*z*P*c",
-            "O= Wki*P*c",
-            "O=(Wi­Ws)*z*P*c"
+            "O = Wki*P*c",
+            "O = (Wi­Ws)*z*P*c"
         ],
         "correctAnswers": [
             1,
@@ -88489,9 +88489,9 @@
         "number": "Pyt 76",
         "text": "Cecha rynkowa lokalizacja posiada trzy stany: dobry, średni i zły. Obliczając analitycznie wagę tej cechy z porównania stanu dobrego i średniego otrzymano wynik 15%, a z porównania stanu średniego i złego 16%. Z powyższego wynika, że waga tej cechy wynosi:",
         "answers": [
-            "15,5%;",
-            "31%;",
-            "15%."
+            "15,5 %;",
+            "31 %;",
+            "15 %."
         ],
         "correctAnswers": [
             0,
@@ -88576,7 +88576,7 @@
         "answers": [
             "odpowiedzialności cywilnej;",
             "odpowiedzialności karnej;",
-            "odpowiedzialności dyscyplinarnej ( zawodowej ) ."
+            "odpowiedzialności dyscyplinarnej (zawodowej) ."
         ],
         "correctAnswers": [
             1,
@@ -89424,8 +89424,8 @@
         "number": "Pyt 41",
         "text": "Odszkodowanie za nieruchomości niezabudowane przejęte z mocy prawa w trybie \"specustawy drogowej\", w przypadku gdy nieruchomość zostanie wydana w terminie 30 dni od dnia, w którym decyzja zrid stała się ostateczna, powiększa się:",
         "answers": [
-            "o 5% dla dotychczasowego właściciela;",
-            "o 10% dla dotychczasowego użytkownika wieczystego;",
+            "o 5 % dla dotychczasowego właściciela;",
+            "o 10 % dla dotychczasowego użytkownika wieczystego;",
             "o 10 000 zł dla dotychczasowego właściciela lub użytkownika wieczystego."
         ],
         "correctAnswers": [
@@ -90427,9 +90427,9 @@
         "number": "Pyt 10",
         "text": "Stopień zużycia fundamentów i posadzki betonowej wiaty wynosi 25%, a udział tych elementów w koszcie odtworzenia wynosi 20%, natomiast stopień zużycia stalowej konstrukcji nośnej wraz z pokryciem wynosi 50%, a udział tych elementów w koszcie odtworzenia wynosi 80%. Średnioważony stopień zużycia technicznego wiaty wynosi:",
         "answers": [
-            "40%;",
-            "45%;",
-            "50%."
+            "40 %;",
+            "45 %;",
+            "50 %."
         ],
         "correctAnswers": [
             0,
@@ -91228,7 +91228,7 @@
         "answers": [
             "wymagające przeprowadzenia scaleń i podziału nieruchomości;",
             "lokalizacji obiektów handlowych o powierzchni sprzedaży powyżej 2 000 m2;",
-            "tereny rolne o klasach bonitacyjnych I ­ III."
+            "tereny rolne o klasach bonitacyjnych I - III."
         ],
         "correctAnswers": [
             1,
@@ -91755,7 +91755,7 @@
         "answers": [
             "wpływ na zmianę ceny w czasie;",
             "wpływ danej cechy na zróżnicowanie cen w analizowanym zbiorze;",
-            "udział procentowy danej cechy w różnicy ΔC = Cmax­Cmin."
+            "udział procentowy danej cechy w różnicy ΔC = Cmax-­Cmin."
         ],
         "correctAnswers": [
             0,
@@ -92516,11 +92516,11 @@
     {
         "id": "5443",
         "number": "Pyt 43",
-        "text": "Cena za m2 wynosi: minimalna 2000zł, maksymalna 3000zł. Jeżeli zakres kwotowy (delta C), dla cechy lokalizacja wynosi 200zł za m2, to siła wpływu tej cechy (waga) wynosi:",
+        "text": "Cena za m2 wynosi: minimalna 2000 zł, maksymalna 3000 zł. Jeżeli zakres kwotowy (delta C), dla cechy lokalizacja wynosi 200 zł za m2, to siła wpływu tej cechy (waga) wynosi:",
         "answers": [
-            "10%;",
-            "20%;",
-            "30%."
+            "10 %;",
+            "20 %;",
+            "30 %."
         ],
         "correctAnswers": [
             0,
@@ -92893,7 +92893,7 @@
         "text": "Współczynnik korekcyjny dla gruntu stanowiącego zadrzewienie śródpolne klasy VI, w podejściu mieszanym ustala się w wysokości:",
         "answers": [
             "współczynnika korekcyjnego gruntu ornego klasy VI w określonym okręgu podatkowym;",
-            "50% współczynnika korekcyjnego gruntu ornego klasy VI w określonym okręgu podatkowym;",
+            "50 % współczynnika korekcyjnego gruntu ornego klasy VI w określonym okręgu podatkowym;",
             "wskaźnika szacunkowego boru suchego w określonym okręgu podatkowym."
         ],
         "correctAnswers": [
