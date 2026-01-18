@@ -30,6 +30,12 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [showSavedQuestions, setShowSavedQuestions] = useState(false);
 
+  // Clear localStorage on initial page load to always show login page
+  useEffect(() => {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserEmail');
+    localStorage.removeItem('currentUserPicture');
+  }, []);
 
 
   const handleLogin = (username: string, email?: string, picture?: string) => {
