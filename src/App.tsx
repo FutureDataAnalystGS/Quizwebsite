@@ -30,16 +30,7 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [showSavedQuestions, setShowSavedQuestions] = useState(false);
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem('currentUser');
-    const savedEmail = localStorage.getItem('currentUserEmail');
-    const savedPicture = localStorage.getItem('currentUserPicture');
-    if (savedUser) {
-      setCurrentUser(savedUser);
-      setUserEmail(savedEmail);
-      setUserPicture(savedPicture);
-    }
-  }, []);
+
 
   const handleLogin = (username: string, email?: string, picture?: string) => {
     setCurrentUser(username);
